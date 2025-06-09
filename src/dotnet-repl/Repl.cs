@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
@@ -102,7 +102,7 @@ public class Repl : IDisposable
         await ready.FirstAsync();
     }
 
-    public async Task<int> RunAsync(
+    public async Task RunAsync(
         InteractiveDocument? notebook = null,
         bool exitAfterRun = false)
     {
@@ -136,14 +136,15 @@ public class Repl : IDisposable
 
             if (_disposalTokenSource.IsCancellationRequested || input is null)
             {
-                return 129;
+                ExitCode = 129;
+                break;
             }
 
             var result = await RunKernelCommand(new SubmitCode(input));
 
             if (result.Events.Last() is CommandFailed)
             {
-                return 2;
+                ExitCode = 2;
             }
 
             if (exitAfterRun && queuedSubmissions.Count == 0)
@@ -154,8 +155,9 @@ public class Repl : IDisposable
 
         _readyForInput.OnCompleted();
 
-        return 0;
     }
+
+    public int ExitCode { get; private set; }
 
     private void SetTheme()
     {

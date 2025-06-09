@@ -219,6 +219,8 @@ public static class CommandLineParser
             await repl.RunAsync(
                 notebook,
                 options.ExitAfterRun);
+
+            return repl.ExitCode;
         }
         else
         {
