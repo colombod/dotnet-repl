@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Assent" Version="2.3.2" />
+    <PackageReference Include="Assent" Version="2.4.1" />
     <PackageReference Include="fluentassertions" Version="6.11.0" />
     <PackageReference Include="microsoft.extensions.dependencyinjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0-preview-25060-03" />

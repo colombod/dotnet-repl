@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
@@ -49,22 +48,23 @@ public class NotebookRunnerTests : IDisposable
     [Fact]
     public async Task When_an_ipynb_is_run_and_no_error_is_produced_then_the_exit_code_is_0()
     {
-        var parseResult =_rootCommand.Parse($"--run \"{_directory}/succeed.ipynb\" --exit-after-run");
-        parseResult.Configuration.Error = new StringWriter();
-        var result = await ((AsynchronousCommandLineAction)_rootCommand.Action).InvokeAsync(parseResult);
+        var error = new StringWriter();
+        var result = await _rootCommand
+                           .Parse($"--run \"{_directory}/succeed.ipynb\" --exit-after-run")
+                           .InvokeAsync(new() { Output = new StringWriter(), Error = error });
 
-        parseResult.Configuration.Error.ToString().Should().BeEmpty();
+        error.ToString().Should().BeEmpty();
         result.Should().Be(0);
     }
 
     [Fact]
     public async Task When_an_ipynb_is_run_and_an_error_is_produced_from_a_cell_then_the_exit_code_is_2()
     {
-        var parseResult = _rootCommand.Parse($"--run \"{_directory}/fail.ipynb\" --exit-after-run");
-        parseResult.Configuration.Error = new StringWriter();
-        var result = await ((AsynchronousCommandLineAction)_rootCommand.Action).InvokeAsync(parseResult);
+        var error = new StringWriter();
+        var result = await _rootCommand
+                           .Parse($"--run \"{_directory}/fail.ipynb\" --exit-after-run").InvokeAsync(new() { Output = new StringWriter(), Error = error });
 
-        parseResult.Configuration.Error.ToString().Should().BeEmpty();
+        error.ToString().Should().BeEmpty();
         result.Should().Be(2);
     }
 
