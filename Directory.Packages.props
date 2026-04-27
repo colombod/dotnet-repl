@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <DotNetInteractiveVersion>1.0.0-beta.25264.2</DotNetInteractiveVersion>
+    <DotNetInteractiveVersion>1.0.0-beta.26120.1</DotNetInteractiveVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Assent" Version="3.0.1" />
