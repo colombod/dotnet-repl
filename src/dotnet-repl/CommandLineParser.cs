@@ -1,16 +1,18 @@
-﻿using System;
+
+using System;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.CommandLine.Help;
+using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Automation;
+using Spectre.Console;
+using Pocket;
 using Microsoft.DotNet.Interactive.Documents;
 using Microsoft.DotNet.Interactive.Documents.Jupyter;
-using Pocket;
-using Spectre.Console;
+using Automation;
 
 namespace dotnet_repl;
 
@@ -109,8 +111,10 @@ public static class CommandLineParser
             DescribeCommand(),
         };
 
-        var helpOption = rootCommand.Options.OfType<HelpOption>().Single();
-        ((HelpAction)helpOption.Action).Builder = new SpectreHelpBuilder();
+        rootCommand.Options
+                   .OfType<HelpOption>()
+                   .Single()
+                   .Action = new SpectreHelpAction();
 
         startRepl ??= StartAsync;
 
@@ -271,6 +275,6 @@ public static class CommandLineParser
                                    : 0;
         }
 
-        return 0;
+        
     }
 }

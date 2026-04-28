@@ -2,6 +2,7 @@
 using System.Text;
 using Microsoft.DotNet.Interactive;
 using Microsoft.DotNet.Interactive.Events;
+using Microsoft.DotNet.Interactive.Formatting;
 using Spectre.Console;
 using Spectre.Console.Rendering;
 

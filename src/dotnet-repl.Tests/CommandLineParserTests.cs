@@ -1,15 +1,14 @@
+using dotnet_repl.Tests.Utility;
+using FluentAssertions;
 using System;
 using System.CommandLine;
-using System.CommandLine.Invocation;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using FluentAssertions;
 using Xunit;
 
 namespace dotnet_repl.Tests;
 
-public class CommandLineParserTests
+public partial class CommandLineParserTests
 {
     private readonly RootCommand _rootCommand;
 
@@ -22,10 +21,9 @@ public class CommandLineParserTests
     public void Help_is_snazzy()
     {
         var parseResult = _rootCommand.Parse("-h");
-        parseResult.Configuration.Output = new StringWriter();
-        ((SynchronousCommandLineAction)parseResult.Action).Invoke(parseResult);
+        parseResult.Invoke(new() { Output = new StringWriter() });
 
-        var outputLines = parseResult.Configuration
+        var outputLines = parseResult.InvocationConfiguration
                                      .Output
                                      .ToString()
                                      .Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries)
@@ -34,19 +32,19 @@ public class CommandLineParserTests
         string.Join('\n', outputLines)
               .Should().Contain(
                   """
-                  [38;5;215m      _   _   _____   _____     ____    _____   ____    _     [0m
-                  [38;5;215m     | \ | | | ____| |_   _|   |  _ \  | ____| |  _ \  | |    [0m
-                  [38;5;215m     |  \| | |  _|     | |     | |_) | |  _|   | |_) | | |    [0m
-                  [38;5;215m  _  | |\  | | |___    | |     |  _ <  | |___  |  __/  | |___ [0m
-                  [38;5;215m (_) |_| \_| |_____|   |_|     |_| \_\ |_____| |_|     |_____|[0m
-                  [38;5;215m                                                              [0m
-                  """.Replace("\r", ""));
+                      [38;5;215m      _   _   _____   _____     ____    _____   ____    _     [0m
+                      [38;5;215m     | \ | | | ____| |_   _|   |  _ \  | ____| |  _ \  | |    [0m
+                      [38;5;215m     |  \| | |  _|     | |     | |_) | |  _|   | |_) | | |    [0m
+                      [38;5;215m  _  | |\  | | |___    | |     |  _ <  | |___  |  __/  | |___ [0m
+                      [38;5;215m (_) |_| \_| |_____|   |_|     |_| \_\ |_____| |_|     |_____|[0m
+                      [38;5;215m                                                              [0m
+                      """.Replace("\r", ""));
     }
 
     [Fact]
     public void Parser_configuration_is_valid()
     {
-        _rootCommand.Parse("").Configuration.ThrowIfInvalid();
+        _rootCommand.ThrowIfInvalid();
     }
 
     [Fact]

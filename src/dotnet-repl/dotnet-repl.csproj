@@ -2,10 +2,9 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <RollForward>LatestMajor</RollForward>
     <Nullable>enable</Nullable>
-    <DotNetInteractiveVersion>1.0.0-beta.25264.2</DotNetInteractiveVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -27,28 +26,29 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="microsoft.dotnet.interactive" Version="$(DotNetInteractiveVersion)" />
-    <PackageReference Include="microsoft.dotnet.interactive.csharp" Version="$(DotNetInteractiveVersion)" />
-    <PackageReference Include="Microsoft.DotNet.Interactive.Documents" Version="$(DotNetInteractiveVersion)" />
-    <PackageReference Include="microsoft.dotnet.interactive.fsharp" Version="$(DotNetInteractiveVersion)" />
-    <PackageReference Include="Microsoft.Dotnet.Interactive.Browser" Version="$(DotNetInteractiveVersion)" />
-    <PackageReference Include="Microsoft.DotNet.Interactive.Http" Version="$(DotNetInteractiveVersion)" />
-    <PackageReference Include="microsoft.dotnet.interactive.packagemanagement" Version="$(DotNetInteractiveVersion)" />
-    <PackageReference Include="microsoft.dotnet.interactive.powershell" Version="$(DotNetInteractiveVersion)" />
-    <PackageReference Include="radline" Version="0.7.0" />
-    <PackageReference Include="Serilog.Sinks.RollingFileAlternate" Version="2.0.9" />
-    <PackageReference Include="Spectre.Console" Version="0.48.1-preview.0.36" />
-    <PackageReference Include="System.CommandLine" Version="2.0.0-beta5.25265.1" />
-    <PackageReference Include="trexlib" Version="1.0.188" />
-    <PackageReference Include="pocket.disposable" Version="1.2.0">
+    <PackageReference Include="microsoft.dotnet.interactive" />
+    <PackageReference Include="microsoft.dotnet.interactive.csharp" />
+    <PackageReference Include="Microsoft.DotNet.Interactive.Documents" />
+    <PackageReference Include="microsoft.dotnet.interactive.fsharp" />
+    <PackageReference Include="Microsoft.Dotnet.Interactive.Browser" />
+    <PackageReference Include="Microsoft.DotNet.Interactive.Http" />
+    <PackageReference Include="microsoft.dotnet.interactive.packagemanagement" />
+    <PackageReference Include="microsoft.dotnet.interactive.powershell" />
+    <PackageReference Include="radline" />
+    <PackageReference Include="Serilog.Sinks.RollingFileAlternate" />
+    <PackageReference Include="Spectre.Console" />
+    <PackageReference Include="System.CommandLine" />
+    <PackageReference Include="System.Security.Cryptography.Xml" />
+    <PackageReference Include="trexlib" />
+    <PackageReference Include="pocket.disposable">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="PocketLogger" Version="0.9.1">
+    <PackageReference Include="PocketLogger">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="PocketLogger.Subscribe" Version="0.9.0">
+    <PackageReference Include="PocketLogger.Subscribe">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
